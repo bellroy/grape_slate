@@ -20,7 +20,7 @@ module GrapeSlate
                  else ''
                  end
 
-        prefix + content + suffix
+        prefix + (content || '') + suffix
       end
     end
   end

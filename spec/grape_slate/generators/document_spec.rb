@@ -13,7 +13,11 @@ describe GrapeSlate::Generators::Document do
 
     subject(:generate) { document.generate }
 
-    it { is_expected.to eq '' }
+    it do
+      is_expected.to eq(
+        ["# Cases", "## Get a list of all cases", "```shell\ncurl /cases --request GET --data '{\"limit_results\":100}' --header 'Content-Type: application/json' --verbose\n```", "This is useful if you need to display an index page of cases on\nyour application. It is also handy if you want to limit the results of a\nrequest to the first 100 returned values.\n\nWe can add multiline comments here!", "### HTTP Request\n`GET /cases(.:format)`", "### Query Parameters\nParameter | Type | Required | Description\n--------- | ---- | -------- | -----------\nlimit_results | Integer | `false` | Return this number of cases as a maximum", "## individual case", "```shell\ncurl /cases/:id --request GET --data '{}' --header 'Content-Type: application/json' --verbose\n```", "### HTTP Request\n`GET /cases/:id(.:format)`", "### Query Parameters\nParameter | Type | Required | Description\n--------- | ---- | -------- | -----------\n", "## create a case", "```shell\ncurl /cases --request POST --data '{\"name\":\"super case\",\"description\":\"the best case ever made\"}' --header 'Content-Type: application/json' --verbose\n```", "### HTTP Request\n`POST /cases(.:format)`", "### Request Parameters\nParameter | Type | Required | Description\n--------- | ---- | -------- | -----------\nname | String | `true` | the cases name\ndescription | String | `false` | the cases name", "## update a case", "```shell\ncurl /cases/:id --request PUT --data '{}' --header 'Content-Type: application/json' --verbose\n```", "### HTTP Request\n`PUT /cases/:id(.:format)`", "### Request Parameters\nParameter | Type | Required | Description\n--------- | ---- | -------- | -----------\nname | String | `false` | the cases name\ndescription | String | `false` | the cases name"]
+      )
+    end
   end
 
 

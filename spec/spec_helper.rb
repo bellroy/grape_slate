@@ -5,3 +5,7 @@ require 'grape'
 require 'grape_slate'
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
+
+
+GrapeSlate.configure do |config|
+end

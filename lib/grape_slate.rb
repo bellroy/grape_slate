@@ -1,4 +1,5 @@
 require "grape_slate/version"
+require "grape_slate/configuration"
 require "grape_slate/generators"
 require "grape_slate/documentation_generator"
 

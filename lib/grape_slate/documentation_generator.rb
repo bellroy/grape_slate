@@ -6,15 +6,18 @@ module GrapeSlate
 
     def run!
       namespaces.each do |namespace|
-        document = Generators::Document.new(namespace, routes_for(namespace))
+        document = Generators::Document.new namespace, routes_for(namespace)
         document_contents = document.generate
-        File.open('tmp/'+document.filename+'.md', 'w+') do |file|
+
+        File.open(File.join(GrapeSlate.configuration.output_dir, document.filename + file_extension), 'w+') do |file|
           document_contents.each do |content|
             file.write content
             file.write "\n\n"
           end
         end
       end
+
+      return true
     end
 
     def namespaces
@@ -27,6 +30,10 @@ module GrapeSlate
 
     def routes_for(namespace)
       api_class.routes.select { |route| route.route_namespace == namespace }
+    end
+
+    def file_extension
+      '.md'
     end
   end
 end

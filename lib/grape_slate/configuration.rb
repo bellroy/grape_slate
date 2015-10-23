@@ -15,12 +15,18 @@ module GrapeSlate
 
     # Resources to exclude from the documentation.
     # @return [Array]
+    attr_accessor :resource_exclusion
+
+    # The output dir for the generated documentation
+    # @return [String]
+    attr_accessor :output_dir
 
     def initialize
       @name = 'My API'
       @description = 'My API description'
       @include_root = false
       @resource_exclusion = []
+      @output_dir = 'tmp'
     end
   end
 

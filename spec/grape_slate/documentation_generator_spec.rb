@@ -5,8 +5,7 @@ describe GrapeSlate::DocumentationGenerator do
 
   describe '#run!' do
     subject(:run) { generator.run! }
-
-    it { is_expected.to eq '' }
+    it { is_expected.to eq true }
   end
 
   describe '#namespaces' do
