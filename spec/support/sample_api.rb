@@ -1,11 +1,17 @@
 class SampleAPI < Grape::API
   resource 'cases' do
-    desc 'cases list'
+    desc 'Get a list of all cases' do
+      detail %Q{This is useful if you need to display an index page of cases on
+your application. It is also handy if you want to limit the results of a
+request to the first 100 returned values.
+
+We can add multiline comments here!}
+    end
     params do
       optional :limit_results,
-               type: 'integer',
-               desc: 'Return this number of cases as a maximum',
-               documentation: { example: 100 }
+        type: 'integer',
+        desc: 'Return this number of cases as a maximum',
+        documentation: { example: 100 }
     end
     get '/' do
     end
@@ -17,13 +23,13 @@ class SampleAPI < Grape::API
     desc 'create a case'
     params do
       requires :name,
-               type: 'string',
-               desc: 'the cases name',
-               documentation: { example: 'super case' }
+        type: 'string',
+        desc: 'the cases name',
+        documentation: { example: 'super case' }
       optional :description,
-               type: 'string',
-               desc: 'the cases name',
-               documentation: { example: 'the best case ever made' }
+        type: 'string',
+        desc: 'the cases name',
+        documentation: { example: 'the best case ever made' }
     end
     post '/' do
     end
@@ -41,9 +47,9 @@ class SampleAPI < Grape::API
     desc 'get a list of all studies in a case'
     params do
       optional :limit_results,
-               type: 'integer',
-               desc: 'Return this number of cases as a maximum',
-               documentation: { example: 100 }
+        type: 'integer',
+        desc: 'Return this number of cases as a maximum',
+        documentation: { example: 100 }
     end
     get '/' do
     end
@@ -51,9 +57,9 @@ class SampleAPI < Grape::API
     desc 'create a study for a specific case'
     params do
       requires :name,
-               type: 'string',
-               desc: 'the cases name',
-               documentation: { example: 'super case' }
+        type: 'string',
+        desc: 'the cases name',
+        documentation: { example: 'super case' }
     end
     post '/' do
     end
@@ -61,9 +67,9 @@ class SampleAPI < Grape::API
     desc 'updates a study for a specific case'
     params do
       requires :name,
-               type: 'string',
-               desc: 'the cases name',
-               documentation: { example: 'super case' }
+        type: 'string',
+        desc: 'the cases name',
+        documentation: { example: 'super case' }
     end
     put ':id' do
     end

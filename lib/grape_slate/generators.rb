@@ -29,3 +29,4 @@ end
 require 'grape_slate/generators/document'
 require 'grape_slate/generators/parameters'
 require 'grape_slate/generators/request'
+require 'grape_slate/generators/code'
