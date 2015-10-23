@@ -1,8 +1,8 @@
 require "grape_slate/version"
+require "grape_slate/generators"
+require "grape_slate/documentation_generator"
 
 module GrapeSlate
-  autoload :Document, 'grape_slate/document'
-
   def self.root
     File.dirname __dir__
   end
