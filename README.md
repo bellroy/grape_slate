@@ -8,7 +8,7 @@ your Grape API.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'grape_slate'
+gem 'grape_slate', github: 'tricycle/grape_slate'
 ```
 
 And then execute:
@@ -21,7 +21,20 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+GrapeSlate::DocumentationGenerator.new(your_grape_api_class_goes_here).run!
+```
+
+You will also need to specify the location of your Slate `source`
+directory in a config initializer file. The default location for the
+generated files will be the `tmp` directory in your application root
+folder.
+
+```ruby
+GrapeSlate.configure do |config|
+  config.output_dir = 'api-docs/source'
+end
+```
 
 ## Development
 
