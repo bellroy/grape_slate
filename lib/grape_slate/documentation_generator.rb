@@ -1,3 +1,5 @@
+require 'fileutils'
+
 module GrapeSlate
   class DocumentationGenerator
     def initialize(api_class)
@@ -5,16 +7,29 @@ module GrapeSlate
     end
 
     def run!
+      FileUtils::mkdir_p "#{GrapeSlate.configuration.output_dir}/generated"
+
+      filenames = []
+
       namespaces.each do |namespace|
         document = Generators::Document.new namespace, routes_for(namespace)
         document_contents = document.generate
 
-        File.open(File.join(GrapeSlate.configuration.output_dir, document.filename + file_extension), 'w+') do |file|
+        filenames << document.filename
+
+        File.open(File.join(GrapeSlate.configuration.output_dir, 'generated', document.filename + file_extension), 'w+') do |file|
           document_contents.each do |content|
             file.write content
             file.write "\n\n"
           end
         end
+      end
+
+      File.open(File.join(GrapeSlate.configuration.output_dir, '_generated.html.erb'), 'w+') do |file|
+        file.write "<% docs = #{filenames} %>\n"
+        file.write "<% docs.each do |doc| %>\n"
+        file.write "  <%= partial \"generated/\#{doc}\" %>\n"
+        file.write "<% end %>\n"
       end
 
       return true
