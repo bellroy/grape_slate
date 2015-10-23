@@ -5,8 +5,15 @@ module GrapeSlate
     end
 
     def run!
-      namespaces.each do
-        Document.new(namespace, routes_for(namespace)).generate
+      namespaces.each do |namespace|
+        document = Generators::Document.new(namespace, routes_for(namespace))
+        document_contents = document.generate
+        File.open('tmp/'+document.filename+'.md', 'w+') do |file|
+          document_contents.each do |content|
+            file.write content
+            file.write "\n\n"
+          end
+        end
       end
     end
 

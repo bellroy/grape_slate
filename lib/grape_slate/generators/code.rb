@@ -10,12 +10,10 @@ module GrapeSlate
       def generate
         array = []
         array << "```shell"
-        array << "curl #{route.route_path} "
-        array << "--request #{route.route_method} "
-        array << "--data '#{json_data}' "
-        array << "--header 'Content-Type: application/json' "
-        array << "--verbose"
+        array << code_sample
         array << "```"
+
+        array.join("\n")
       end
 
       private
@@ -24,6 +22,16 @@ module GrapeSlate
 
       def json_data
         route.route_params.map { |k,v| [k, v[:documentation][:example]] unless v.is_a?(String) || v[:documentation].blank? }.compact.to_h.to_json
+      end
+
+      def code_sample
+        array = []
+        array << "curl #{route.route_path.gsub('(.:format)', '')}"
+        array << "--request #{route.route_method}"
+        array << "--data '#{json_data}'"
+        array << "--header 'Content-Type: application/json'"
+        array << "--verbose"
+        array.join(' ')
       end
     end
   end

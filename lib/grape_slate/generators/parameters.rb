@@ -20,7 +20,7 @@ module GrapeSlate
           array << route_params.map {|k,v| [k, v[:type].capitalize, "`#{v[:required]}`", v[:desc]].join(' | ') unless v.is_a?(String) }.compact
         end
 
-        return array
+        return array.join("\n")
       end
 
       private

@@ -10,7 +10,7 @@ module GrapeSlate
         array = []
         array << content_tag(:h3, "HTTP Request")
         array << content_tag(:code, "#{route_method} #{route_path}")
-        return array
+        return array.join("\n")
       end
 
       private
