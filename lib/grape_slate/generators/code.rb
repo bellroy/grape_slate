@@ -2,7 +2,7 @@ require 'json'
 
 module GrapeSlate
   module Generators
-    class Code
+    class Code < Base
       def initialize(route)
         self.route = route
       end
@@ -26,7 +26,7 @@ module GrapeSlate
 
       def code_sample
         array = []
-        array << "curl #{route.route_path.gsub('(.:format)', '')}"
+        array << "curl #{documentable_route_path(route)}"
         array << "--request #{route.route_method}"
         array << "--data '#{json_data}'"
         array << "--header 'Content-Type: application/json'"

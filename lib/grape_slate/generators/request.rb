@@ -1,21 +1,24 @@
 module GrapeSlate
   module Generators
     class Request < Base
-      def initialize(route_method, route_path)
-        self.route_method = route_method
-        self.route_path = route_path
+
+      # Set GrapeSlate's configuration
+      # @param config [Grape::Route]
+      def initialize(route)
+        self.route = route
       end
 
       def generate
         array = []
         array << content_tag(:h3, "HTTP Request")
-        array << content_tag(:code, "#{route_method} #{route_path}")
+        array << content_tag(:code, "#{route.route_method} #{documentable_route_path(route)}")
         return array.join("\n")
       end
 
       private
 
-      attr_accessor :route_method, :route_path
+      attr_accessor :route
+
     end
   end
 end
