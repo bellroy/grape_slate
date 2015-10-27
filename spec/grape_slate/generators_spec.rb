@@ -8,7 +8,7 @@ describe GrapeSlate::Generators::Base do
     subject(:documentable_route_path) { generator.documentable_route_path(route)}
 
     before do      
-      allow(GrapeSlate).to receive_message_chain(:configuration, :base_path).and_return('http://abc.com')
+      allow(GrapeSlate).to receive_message_chain(:configuration, :base_path).and_return('http://example.org')
     end
 
     #TODO : improve stubbing so there's no need for route_path/route_version mocks ( should come from resource object)

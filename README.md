@@ -33,7 +33,7 @@ folder.
 ```ruby
 GrapeSlate.configure do |config|
   config.output_dir = 'api-docs/source'
-  config.base_path = 'http:://www.radiopaedia.org'
+  config.base_path = 'http:://www.example.com'
 end
 ```
 
