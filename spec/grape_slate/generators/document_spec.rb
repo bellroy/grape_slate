@@ -9,15 +9,29 @@ describe GrapeSlate::Generators::Document do
 
 
   describe '#generate' do
-    let(:namespace) { '/cases' }
 
     subject(:generate) { document.generate }
 
-    it do
-      is_expected.to eq(
-        ["# Cases", "## Get a list of all cases", "```shell\ncurl /v1/cases --request GET --data '{\"limit_results\":100}' --header 'Content-Type: application/json' --verbose\n```", "This is useful if you need to display an index page of cases on\nyour application. It is also handy if you want to limit the results of a\nrequest to the first 100 returned values.\n\nWe can add multiline comments here!", "### HTTP Request\n`GET /v1/cases`", "### Query Parameters\nParameter | Type | Required | Description\n--------- | ---- | -------- | -----------\nlimit_results | Integer | `false` | Return this number of cases as a maximum", "## individual case", "```shell\ncurl /v1/cases/:id --request GET --data '{}' --header 'Content-Type: application/json' --verbose\n```", "### HTTP Request\n`GET /v1/cases/:id`", "### Query Parameters\nParameter | Type | Required | Description\n--------- | ---- | -------- | -----------\n", "## create a case", "```shell\ncurl /v1/cases --request POST --data '{\"name\":\"super case\",\"description\":\"the best case ever made\"}' --header 'Content-Type: application/json' --verbose\n```", "### HTTP Request\n`POST /v1/cases`", "### Request Parameters\nParameter | Type | Required | Description\n--------- | ---- | -------- | -----------\nname | String | `true` | the cases name\ndescription | String | `false` | the cases name", "## update a case", "```shell\ncurl /v1/cases/:id --request PUT --data '{}' --header 'Content-Type: application/json' --verbose\n```", "### HTTP Request\n`PUT /v1/cases/:id`", "### Request Parameters\nParameter | Type | Required | Description\n--------- | ---- | -------- | -----------\nname | String | `false` | the cases name\ndescription | String | `false` | the cases name"]
-      )
+    context 'when namespace is /cases' do
+      let(:namespace) { '/cases' }
+
+      it do
+        is_expected.to eq(
+          ["# Cases", "## Get a list of all cases", "```shell\ncurl /v1/cases --request GET --data '{\"limit_results\":100}' --header 'Content-Type: application/json' --verbose\n```", "This is useful if you need to display an index page of cases on\nyour application. It is also handy if you want to limit the results of a\nrequest to the first 100 returned values.\n\nWe can add multiline comments here!", "### HTTP Request\n`GET /v1/cases`", "### Query Parameters\nParameter | Type | Required | Description\n--------- | ---- | -------- | -----------\nlimit_results | Integer | `false` | Return this number of cases as a maximum", "## individual case", "```shell\ncurl /v1/cases/:id --request GET --data '{}' --header 'Content-Type: application/json' --verbose\n```", "### HTTP Request\n`GET /v1/cases/:id`", "### Query Parameters\nParameter | Type | Required | Description\n--------- | ---- | -------- | -----------\n", "## create a case", "```shell\ncurl /v1/cases --request POST --data '{\"name\":\"super case\",\"description\":\"the best case ever made\"}' --header 'Content-Type: application/json' --verbose\n```", "### HTTP Request\n`POST /v1/cases`", "### Request Parameters\nParameter | Type | Required | Description\n--------- | ---- | -------- | -----------\nname | String | `true` | the cases name\ndescription | String | `false` | the cases name", "## update a case", "```shell\ncurl /v1/cases/:id --request PUT --data '{}' --header 'Content-Type: application/json' --verbose\n```", "### HTTP Request\n`PUT /v1/cases/:id`", "### Request Parameters\nParameter | Type | Required | Description\n--------- | ---- | -------- | -----------\nname | String | `false` | the cases name\ndescription | String | `false` | the cases name"]
+        )
+      end
     end
+
+    context 'when namespace is /main_information' do
+      let(:namespace) { '/main_information' }
+
+      it do
+        is_expected.to eq(
+          ["# Main Information"]
+        )
+      end
+    end
+
   end
 
 

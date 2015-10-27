@@ -46,6 +46,18 @@ We can add multiline comments here!}
     end
   end
 
+  resource '/cases/:case_id/main_information' do
+    desc 'Create main information for a case'
+    params do
+      requires :detail,
+        type: 'string',
+        desc: 'The details about this information',
+        documentation: { example: 'This is the required information' }
+    end
+    post '/' do
+    end
+  end
+
   resource '/cases/:case_id/studies' do
     desc 'get a list of all studies in a case'
     params do

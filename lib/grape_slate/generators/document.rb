@@ -31,7 +31,7 @@ module GrapeSlate
       attr_accessor :namespace, :routes
 
       def title
-        filename.capitalize
+        filename.titleize
       end
     end
   end

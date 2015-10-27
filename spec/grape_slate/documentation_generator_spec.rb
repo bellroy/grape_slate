@@ -10,6 +10,14 @@ describe GrapeSlate::DocumentationGenerator do
 
   describe '#namespaces' do
     subject(:namespaces) { generator.namespaces }
-    it { is_expected.to eq ["/cases", "/cases/:case_id/studies", "/admin"] }
+
+    it do
+      is_expected.to eq [
+        "/cases",
+        "/cases/:case_id/main_information",
+        "/cases/:case_id/studies",
+        "/admin"
+      ]
+    end
   end
 end

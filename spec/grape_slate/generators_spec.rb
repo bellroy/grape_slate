@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 describe GrapeSlate::Generators::Base do
-  subject(:generator) { described_class.new}
+  subject(:generator) { described_class.new }
 
   describe '#documentable_route_path' do
     let(:route) { Grape::Route.new }
     let(:base_path) { 'http://example.org' }
     subject(:documentable_route_path) { generator.documentable_route_path(route)}
 
-    before do      
+    before do
       allow(GrapeSlate).to receive_message_chain(:configuration, :base_path).and_return(base_path)
     end
 
@@ -29,6 +29,6 @@ describe GrapeSlate::Generators::Base do
       end
 
       it { is_expected.to eq "#{base_path}/cases/:id/studies" }
-    end    
+    end
   end
 end
