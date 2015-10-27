@@ -1,4 +1,7 @@
 class SampleAPI < Grape::API
+
+  version 'v1'
+
   resource 'cases' do
     desc 'Get a list of all cases' do
       detail %Q{This is useful if you need to display an index page of cases on

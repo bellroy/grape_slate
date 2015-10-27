@@ -22,6 +22,12 @@ module GrapeSlate
 
         prefix + (content || '') + suffix
       end
+
+      # Create documentable route path
+      # @param config [Grape::Route]
+      def documentable_route_path(route)
+        GrapeSlate.configuration.base_path + route.route_path.gsub('(.:format)', '').gsub(':version', route.route_version.to_s)
+      end
     end
   end
 end

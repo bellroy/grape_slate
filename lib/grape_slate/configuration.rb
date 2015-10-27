@@ -21,12 +21,17 @@ module GrapeSlate
     # @return [String]
     attr_accessor :output_dir
 
+    # The base path of the API
+    # @return [String]
+    attr_accessor :base_path
+
     def initialize
       @name = 'My API'
       @description = 'My API description'
       @include_root = false
       @resource_exclusion = []
       @output_dir = 'tmp'
+      @base_path = ''
     end
   end
 
