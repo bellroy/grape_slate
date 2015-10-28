@@ -12,7 +12,7 @@ We can add multiline comments here!}
     end
     params do
       optional :limit_results,
-        type: 'integer',
+        type: Integer,
         desc: 'Return this number of cases as a maximum',
         documentation: { example: 100 }
     end
@@ -26,11 +26,11 @@ We can add multiline comments here!}
     desc 'create a case'
     params do
       requires :name,
-        type: 'string',
+        type: String,
         desc: 'the cases name',
         documentation: { example: 'super case' }
       optional :description,
-        type: 'string',
+        type: String,
         desc: 'the cases name',
         documentation: { example: 'the best case ever made' }
     end
@@ -39,8 +39,8 @@ We can add multiline comments here!}
 
     desc 'update a case'
     params do
-      optional :name, type: 'string', desc: 'the cases name'
-      optional :description, type: 'string', desc: 'the cases name'
+      optional :name, type: String, desc: 'the cases name'
+      optional :description, type: String, desc: 'the cases name'
     end
     put ':id' do
     end
@@ -50,7 +50,7 @@ We can add multiline comments here!}
     desc 'Create main information for a case'
     params do
       requires :detail,
-        type: 'string',
+        type: String,
         desc: 'The details about this information',
         documentation: { example: 'This is the required information' }
     end
@@ -62,7 +62,7 @@ We can add multiline comments here!}
     desc 'get a list of all studies in a case'
     params do
       optional :limit_results,
-        type: 'integer',
+        type: Integer,
         desc: 'Return this number of cases as a maximum',
         documentation: { example: 100 }
     end
@@ -72,9 +72,14 @@ We can add multiline comments here!}
     desc 'create a study for a specific case'
     params do
       requires :name,
-        type: 'string',
+        type: String,
         desc: 'the cases name',
         documentation: { example: 'super case' }
+      optional :category,
+        type: String,
+        desc: 'the category for the case',
+        values: ['Valid', 'Funny', 'Interesting'],
+        documentation: { example: 'Valid' }
     end
     post '/' do
     end
@@ -82,7 +87,7 @@ We can add multiline comments here!}
     desc 'updates a study for a specific case'
     params do
       requires :name,
-        type: 'string',
+        type: String,
         desc: 'the cases name',
         documentation: { example: 'super case' }
     end

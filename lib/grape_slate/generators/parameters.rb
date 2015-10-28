@@ -15,9 +15,9 @@ module GrapeSlate
           else
             array << "### Query Parameters"
           end
-          array << "Parameter | Type | Required | Description"
-          array << "--------- | ---- | -------- | -----------"
-          array << route_params.map {|k,v| [k, v[:type].capitalize, "`#{v[:required]}`", v[:desc]].join(' | ') unless v.is_a?(String) }.compact
+          array << "Parameter | Type | Required / Values | Description"
+          array << "--------- | ---- | ----------------- | -----------"
+          array << route_params.map {|k,v| [k, v[:type].capitalize, "`#{v[:required]}` #{v[:values]}", v[:desc]].join(' | ') unless v.is_a?(String) }.compact
         end
 
         return array.join("\n")
