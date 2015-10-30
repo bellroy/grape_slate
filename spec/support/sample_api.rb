@@ -34,6 +34,13 @@ We can add multiline comments here!}
         desc: 'the cases name',
         documentation: { example: 'the best case ever made' }
     end
+    route_setting :example_response, {
+      id:          { type: Integer,  example: 8731 },
+      created_at:  { type: DateTime, example: "Fri, 30 Oct 2015 09:52:21 +1100" },
+      description: { type: String,   example: "Your description here" },
+      name:        { type: String,   example: "Case name" },
+      updated_at:  { type: DateTime, example: "Fri, 30 Oct 2015 09:52:21 +1100" }
+    }
     post '/' do
     end
 

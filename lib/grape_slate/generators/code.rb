@@ -9,10 +9,8 @@ module GrapeSlate
 
       def generate
         array = []
-        array << "```shell"
         array << code_sample
-        array << "```"
-
+        array << response_sample
         array.join("\n")
       end
 
@@ -26,12 +24,26 @@ module GrapeSlate
 
       def code_sample
         array = []
+        array << "```shell\n"
         array << "curl #{documentable_route_path(route)}"
         array << "--request #{route.route_method}"
         array << "--data '#{json_data}'"
         array << "--header 'Content-Type: application/json'"
-        array << "--verbose"
+        array << "--verbose\n"
+        array << "```\n"
         array.join(' ')
+      end
+
+      def response_sample
+        example_response = route.route_settings[:example_response]
+        unless example_response.nil?
+          array = []
+          array << "> Example Response\n"
+          array << "```json"
+          array << JSON.pretty_generate(example_response.map {|k,v| [k, v[:example]] }.to_h)
+          array << "```"
+          array.join("\n")
+        end
       end
     end
   end
