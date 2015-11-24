@@ -100,7 +100,23 @@ We can add multiline comments here!}
     end
     put ':id' do
     end
+
+    desc 'upload an image for a specific study' do
+      detail "Images or stacks of images can be attached to studies. You will
+              need to ensure that you have first created a `study` and retrieved
+              a `study_id` so that you can use it when uploading an image or stack."
+      headers ContentType: {
+                            description: 'Defines content media type',
+                            required: true,
+                            values: ["image/png", "application/zip"],
+                            documentation: { example: 'image/png'}
+                           }
+    end
+    post '/' do
+    end
   end
+
+
 
   resource 'admin' do
     get '/' do
