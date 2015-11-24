@@ -10,6 +10,6 @@ describe GrapeSlate::Generators::Headers do
   describe '#generate' do
     subject(:generate) { parameters.generate }
 
-    it { is_expected.to eq "### Request Headers\nHeader | Required / Values | Description\n--------- | ----------------- | -----------\nContentType | `true` [\"image/png\", \"application/zip\"] | Defines content media type" }
+    it { is_expected.to eq "### Request Headers\nHeader | Required / Values | Description\n------ | ----------------- | -----------\nContentType | `true` [\"image/png\", \"application/zip\"] | Defines content media type" }
   end
 end

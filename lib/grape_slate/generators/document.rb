@@ -16,7 +16,7 @@ module GrapeSlate
           namespace_array << Code.new(route).generate
           namespace_array << route.route_detail if route.route_detail.present?
           namespace_array << Request.new(route).generate
-          namespace_arrat << Headers.new(route.route_headers).generate
+          namespace_array << Headers.new(route.route_headers).generate
           namespace_array << Parameters.new(route.route_params, route.route_method).generate
         end
 

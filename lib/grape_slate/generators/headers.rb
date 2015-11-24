@@ -11,7 +11,7 @@ module GrapeSlate
         if route_headers.present?
           array << "### Request Headers"
           array << "Header | Required / Values | Description"
-          array << "--------- | ----------------- | -----------"
+          array << "------ | ----------------- | -----------"
           array << route_headers.map {|k,v| [k, "`#{v[:required]}` #{v[:values]}", v[:description]].join(' | ') unless v.is_a?(String) }.compact
         end
 
