@@ -105,14 +105,14 @@ We can add multiline comments here!}
       detail "Images or stacks of images can be attached to studies. You will
               need to ensure that you have first created a `study` and retrieved
               a `study_id` so that you can use it when uploading an image or stack."
-      headers ContentType: {
-                            description: 'Defines content media type',
-                            required: true,
-                            values: ["image/png", "application/zip"],
-                            documentation: { example: 'image/png'}
-                           }
+      headers 'Content-Type' => {
+        description:   'Defines content media type',
+        required:      true,
+        values:        ["image/png", "application/zip"],
+        documentation: { example: 'image/png'}
+      }
     end
-    post '/' do
+    post ':id/images' do
     end
   end
 

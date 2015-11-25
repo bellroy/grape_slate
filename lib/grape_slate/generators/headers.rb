@@ -1,14 +1,19 @@
 module GrapeSlate
   module Generators
     class Headers
+
       def initialize(route_headers)
-        self.route_headers = route_headers
+        self.route_headers = route_headers || {}
+      end
+
+      def route_header_examples
+        Hash[route_headers.map { |key, info_hash| [key, info_hash[:documentation][:example]] }]
       end
 
       def generate
         array = []
 
-        if route_headers.present?
+        unless route_headers.empty?
           array << "### Request Headers"
           array << "Header | Required / Values | Description"
           array << "------ | ----------------- | -----------"

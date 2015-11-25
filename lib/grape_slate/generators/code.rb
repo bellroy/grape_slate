@@ -28,10 +28,19 @@ module GrapeSlate
         array << "curl #{documentable_route_path(route)}"
         array << "--request #{route.route_method}"
         array << "--data '#{json_data}'"
-        array << "--header 'Content-Type: application/json'"
+        array << route_headers
         array << "--verbose\n"
         array << "```\n"
         array.join(' ')
+      end
+
+      def route_headers
+        headers = Headers.new(route.route_headers)
+        {
+          'Content-Type' => 'application/json'
+        }.merge(headers.route_header_examples).map do |key, value|
+          "--header '#{key}: #{value}'"
+        end.join(" ").strip
       end
 
       def response_sample
