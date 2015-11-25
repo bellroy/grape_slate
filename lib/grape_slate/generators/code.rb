@@ -18,20 +18,38 @@ module GrapeSlate
 
       attr_accessor :route
 
-      def json_data
-        route.route_params.map { |k,v| [k, v[:documentation][:example]] unless v.is_a?(String) || v[:documentation].blank? }.compact.to_h.to_json
-      end
-
       def code_sample
         array = []
         array << "```shell\n"
         array << "curl #{documentable_route_path(route)}"
         array << "--request #{route.route_method}"
-        array << "--data '#{json_data}'"
-        array << "--header 'Content-Type: application/json'"
+        array << "--data '#{param_examples.to_json}'"    unless param_examples.empty?
+        array << "--data-binary @#{binary_data_example}" unless binary_data_example.nil?
+        array << route_headers
         array << "--verbose\n"
         array << "```\n"
         array.join(' ')
+      end
+
+      def binary_data_example
+        route.route_settings[:example_binary_data]
+      end
+
+      def param_examples
+        @params_examples ||= route.route_params.map do |key, value|
+          unless value.is_a?(String) || value[:documentation].blank?
+            [key, value[:documentation][:example]]
+          end
+        end.compact.to_h
+      end
+
+      def route_headers
+        headers = Headers.new(route.route_headers)
+        {
+          'Content-Type' => 'application/json'
+        }.merge(headers.route_header_examples).map do |key, value|
+          "--header '#{key}: #{value}'"
+        end.join(" ").strip
       end
 
       def response_sample

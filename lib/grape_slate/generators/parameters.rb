@@ -9,7 +9,7 @@ module GrapeSlate
       def generate
         array = []
 
-        if route_params.present?
+        if route_params.present? && !route_params.values.all?(&:blank?)
           if ['POST', 'PUT', 'PATCH'].include? route_method
             array << "### Request Parameters"
           else
