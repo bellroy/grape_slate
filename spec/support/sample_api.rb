@@ -112,6 +112,7 @@ We can add multiline comments here!}
         documentation: { example: 'image/png'}
       }
     end
+    route_setting :example_binary_data, "image.png"
     post ':id/images' do
     end
   end

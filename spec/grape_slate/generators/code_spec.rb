@@ -24,7 +24,16 @@ describe GrapeSlate::Generators::Code do
         end[3]
       end
 
-      it { is_expected.to eq "```shell\n curl /v1/cases/:case_id/studies/:id/images --request POST --data '{}' --header 'Content-Type: image/png' --verbose\n ```\n\n" }
+      let(:response) do
+<<-RESP
+```shell
+ curl /v1/cases/:case_id/studies/:id/images --request POST --data-binary @image.png --header 'Content-Type: image/png' --verbose
+ ```
+
+RESP
+      end
+
+      it { is_expected.to eq response }
     end
   end
 end
