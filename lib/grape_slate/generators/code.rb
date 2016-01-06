@@ -46,7 +46,8 @@ module GrapeSlate
       def route_headers
         headers = Headers.new(route.route_headers)
         {
-          'Content-Type' => 'application/json'
+          'Content-Type' => 'application/json',
+          'Authorization' => 'Bearer <YOUR_TOKEN>'
         }.merge(headers.route_header_examples).map do |key, value|
           "--header '#{key}: #{value}'"
         end.join(" ").strip
