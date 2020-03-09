@@ -11,7 +11,7 @@ module GrapeSlate
       def generate
         array = []
         array << content_tag(:h3, "HTTP Request")
-        array << content_tag(:code, "#{route.route_method} #{documentable_route_path(route)}")
+        array << content_tag(:code, "#{route.request_method} #{documentable_route_path(route)}")
         return array.join("\n")
       end
 

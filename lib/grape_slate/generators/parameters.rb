@@ -1,23 +1,23 @@
 module GrapeSlate
   module Generators
     class Parameters
-      def initialize(route_params, route_method)
-        self.route_params = route_params
-        self.route_method = route_method
+      def initialize(params, method)
+        self.params = params
+        self.method = method
       end
 
       def generate
         array = []
 
-        if route_params.present? && !route_params.values.all?(&:blank?)
-          if ['POST', 'PUT', 'PATCH'].include? route_method
+        if params.present? && !params.values.all?(&:blank?)
+          if ['POST', 'PUT', 'PATCH'].include? method
             array << "### Request Parameters"
           else
             array << "### Query Parameters"
           end
           array << "Parameter | Type | Required / Values | Description"
           array << "--------- | ---- | ----------------- | -----------"
-          array << route_params.map {|k,v| [k, v[:type].capitalize, "`#{v[:required]}` #{v[:values]}", v[:desc]].join(' | ') unless v.is_a?(String) }.compact
+          array << params.map {|k,v| [k, v[:type].capitalize, "`#{v[:required]}` #{v[:values]}", v[:desc]].join(' | ') unless v.is_a?(String) }.compact
         end
 
         return array.join("\n")
@@ -25,7 +25,7 @@ module GrapeSlate
 
       private
 
-      attr_accessor :route_params, :route_method
+      attr_accessor :params, :method
     end
   end
 end

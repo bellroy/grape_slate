@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe GrapeSlate::Generators::Document do
   let(:routes) do
-    SampleAPI.routes.select {|route| route.route_namespace == namespace}
+    SampleAPI.routes.select {|route| route.namespace == namespace}
   end
 
   subject(:document) { described_class.new(namespace, routes) }

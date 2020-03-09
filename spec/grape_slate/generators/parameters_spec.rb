@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe GrapeSlate::Generators::Parameters do
-  let(:route_params) do
-    SampleAPI.routes.select {|route| route.route_namespace == '/cases/:case_id/studies' }[1].route_params
+  let(:params) do
+    SampleAPI.routes.select {|route| route.namespace == '/cases/:case_id/studies' }[1].params
   end
 
-  let(:route_method) { 'POST' }
+  let(:method) { 'POST' }
 
-  subject(:parameters) { described_class.new(route_params, route_method) }
+  subject(:parameters) { described_class.new(params, method) }
 
   describe '#generate' do
     subject(:generate) { parameters.generate }

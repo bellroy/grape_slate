@@ -3,11 +3,11 @@ require 'spec_helper'
 describe GrapeSlate::Generators::Headers do
   let(:routes) do
     SampleAPI.routes.select do |route|
-      route.route_namespace == '/cases/:case_id/studies'
+      route.namespace == '/cases/:case_id/studies'
     end
   end
 
-  subject(:parameters) { described_class.new(routes[3].route_headers) }
+  subject(:parameters) { described_class.new(routes[3].headers) }
 
   describe '#generate' do
     subject(:generate) { parameters.generate }

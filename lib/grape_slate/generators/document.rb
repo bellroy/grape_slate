@@ -12,12 +12,12 @@ module GrapeSlate
         namespace_array << content_tag(:h1, title)
 
         routes.map do |route|
-          namespace_array << content_tag(:h2, route.route_description)
+          namespace_array << content_tag(:h2, route.description)
           namespace_array << Code.new(route).generate
           namespace_array << route.route_detail if route.route_detail.present?
           namespace_array << Request.new(route).generate
-          namespace_array << Headers.new(route.route_headers).generate
-          namespace_array << Parameters.new(route.route_params, route.route_method).generate
+          namespace_array << Headers.new(route.headers).generate
+          namespace_array << Parameters.new(route.params, route.request_method).generate
         end
 
         namespace_array

@@ -2,22 +2,22 @@ module GrapeSlate
   module Generators
     class Headers
 
-      def initialize(route_headers)
-        self.route_headers = route_headers || {}
+      def initialize(headers)
+        self.headers = headers || {}
       end
 
       def route_header_examples
-        Hash[route_headers.map { |key, info_hash| [key, info_hash[:documentation][:example]] }]
+        Hash[headers.map { |key, info_hash| [key, info_hash[:documentation][:example]] }]
       end
 
       def generate
         array = []
 
-        unless route_headers.empty?
+        unless headers.empty?
           array << "### Request Headers"
           array << "Header | Required | Values | Description"
           array << "------ | -------- | ------ | -----------"
-          array << route_headers.map do |key,value|
+          array << headers.map do |key,value|
             [
               key,
               "`#{value[:required]}`",
@@ -32,7 +32,7 @@ module GrapeSlate
 
       private
 
-      attr_accessor :route_headers
+      attr_accessor :headers
     end
   end
 end

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe GrapeSlate::Generators::Code do
   let(:routes) do
-    SampleAPI.routes.select {|route| route.route_namespace == '/cases'}
+    SampleAPI.routes.select {|route| route.namespace == '/cases'}
   end
 
   subject(:code) { described_class.new(route) }
@@ -20,7 +20,7 @@ describe GrapeSlate::Generators::Code do
     context 'with custom route headers' do
       let(:route) do
         SampleAPI.routes.select do |route|
-          route.route_namespace == '/cases/:case_id/studies'
+          route.namespace == '/cases/:case_id/studies'
         end[3]
       end
 

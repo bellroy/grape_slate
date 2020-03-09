@@ -36,7 +36,7 @@ module GrapeSlate
     end
 
     def namespaces
-      api_class.routes.map(&:route_namespace).uniq
+      api_class.routes.map(&:namespace).uniq
     end
 
     private
@@ -44,7 +44,7 @@ module GrapeSlate
     attr_accessor :api_class
 
     def routes_for(namespace)
-      api_class.routes.select { |route| route.route_namespace == namespace }
+      api_class.routes.select { |route| route.namespace == namespace }
     end
 
     def file_extension
